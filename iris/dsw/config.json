@@ -1,0 +1,6 @@
+{
+    "namespace": "ANALYTICS",
+    "endpoints": {
+        "mdx2json": "MDX2JSON"
+    }
+}

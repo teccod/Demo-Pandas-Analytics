@@ -1,0 +1,19 @@
+version: '3.6'
+services:
+  iris:
+    build: 
+      context: ./iris
+      dockerfile: Dockerfile
+    restart: always
+    command: --check-caps false
+    ports: 
+      - 51773:51773
+      - 53233:52773
+      - 53773:53773
+    volumes:
+      - ~/iris.key:/usr/irissys/mgr/iris.key
+      - ./:/irisdev/app
+
+networks:
+  default:
+    name: PandasIRIS
