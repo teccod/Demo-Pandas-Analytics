@@ -12,6 +12,7 @@ COPY  post_start_hook .
 COPY  src src
 COPY iris.script iris.script
 COPY AnalyticsGlobals.gz .
+COPY FakeData.csv .
 
 RUN gunzip -c AnalyticsGlobals.gz > /opt/analytics/globals.xml
 
