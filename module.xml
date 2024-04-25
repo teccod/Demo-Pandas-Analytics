@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Export generator="Cache" version="25">
+  <Document name="demo-pandas-analytics.ZPM">
+    <Module>
+      <Name>demo-pandas-analytics</Name>
+      <Version>0.1.0</Version>
+      <Packaging>module</Packaging>
+      <Dependencies>
+        <ModuleReference>
+          <Name>zpm-registry</Name>
+          <Version>1.*</Version>
+        </ModuleReference>
+        <ModuleReference>
+          <Name>dsw</Name>
+          <Version>3.*</Version>
+        </ModuleReference>
+
+      </Dependencies>
+      <Parameter Name="SourceDir" Value="analytics" />
+      <Parameter Name="Namespace" Value="ANALYTICS" />
+      <Paramenter Name="app" Value="analytics">
+      <SourcesRoot>iris/src</SourcesRoot>
+      
+      <Resource Name="KPI.DemoPandas.cls" />
+      <Resource Name="ZPM.DemoPandasCSV.cls" />
+      <Resource Name="ZPM.DemoPandasVar.cls" />
+      <Resource Name="*.DFI" />
+      <FileCopy Name="dsw/analytics.json" Target="${cspdir}dsw/configs/${SourceDir}.json"/>
+      <FileCopy Name="dsw/config.json" Target="${cspdir}dsw/configs/${SourceDir}.json"/>
+      <FileCopy Name="AnalyticsGlobals.gz" Target="${cspdir}/"/>
+      <FileCopy Name="FakeData.csv" Target="${cspdir}/"/>
+      <CSPApplication 
+        Url="/cls"
+        Path="iris/src"
+        Recurse="1"
+        Directory="{$cspdir}/demo-pandas-analytics" 
+        MatchRoles=":%DB_${Namespace}"
+        PasswordAuthEnabled="1"
+        UnauthenticatedEnabled="1"
+        ServeFiles="1"
+        CookiePath="/cls/"
+        UseCookies="2"
+       />
+    </Module>
+  </Document>
+</Export>
