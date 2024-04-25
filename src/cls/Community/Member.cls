@@ -21,7 +21,7 @@ Property LastName As %String(MAXLEN = 255);
 
 Property Created As %TimeStamp;
 
-Property Link As %String(MAXLEN = 150) [ SqlComputeCode = {set {*} = $$$Server _ "user/" _ {Uid}}, SqlComputed, SqlComputeOnChange = "%%INSERT" ];
+Property Link As %String(MAXLEN = 150) [ SqlComputeCode = {set {*} = $$$Server _ "user/" _ {Uid}}, SqlComputed, SqlComputeOnChange = %%INSERT ];
 
 Index Link On Link [ Unique ];
 
@@ -30,7 +30,6 @@ Property Hash As %String;
 Property Lang As %String;
 
 Property Deleted As %Boolean;
-
 
 Storage Default
 {
@@ -81,4 +80,3 @@ Storage Default
 }
 
 }
-

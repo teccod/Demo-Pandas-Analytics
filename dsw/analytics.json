@@ -1,0 +1,28 @@
+{
+    "app": {
+        "themeColors": {},
+        "isSaveFilters": true,
+        "isRelatedFilters": true,
+        "colCount": 12
+    },
+    "ns": {
+        "widgets": {
+            
+            "PandasAnalytics.dashboard": {
+                "Widget2": {
+                    "col": 0,
+                    "row": 6,
+                    "sizeX": 12,
+                    "sizeY": 6
+                },
+                "Widget1": {
+                    "col": 0,
+                    "row": 0,
+                    "sizeX": 12,
+                    "sizeY": 6,
+                    "showValues": true
+                }
+            }
+        }
+    }
+}

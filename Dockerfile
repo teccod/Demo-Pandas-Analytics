@@ -8,13 +8,14 @@ RUN chown ${ISC_PACKAGE_MGRUSER}:${ISC_PACKAGE_IRISGROUP} /opt/analytics
 USER ${ISC_PACKAGE_MGRUSER}
 
 COPY  Installer.cls .
+COPY  module.xml .
 COPY  post_start_hook .
 COPY  src src
-COPY iris.script iris.script
-COPY AnalyticsGlobals.gz .
-COPY FakeData.csv .
+COPY  iris.script .
+COPY src/AnalyticsGlobals.gz .
+COPY src/FakeData.csv .
 
-RUN gunzip -c AnalyticsGlobals.gz > /opt/analytics/globals.xml
+RUN gunzip -c src/AnalyticsGlobals.gz > /opt/analytics/globals.xml
 
 RUN iris start IRIS \
 	&& iris session IRIS < iris.script \

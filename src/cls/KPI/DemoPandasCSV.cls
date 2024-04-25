@@ -26,12 +26,11 @@ ClassMethod MembersDF() As %Library.DynamicArray [ Language = python ]
     # it returns whatever data type we like, and ObjectScript understands it.
 
     import iris
-
     # Then, of course, import the pandas itself.
 
     import pandas as pd
  
-    data = pd.read_csv("/opt/analytics/FakeData.csv")
+    data = pd.read_csv("/opt/analytics/src/FakeData.csv")
  
     grouped_data = data.groupby(["gender"]).count()
 
