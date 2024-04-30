@@ -20,7 +20,7 @@
     Do ##class(Security.Users).UnExpireUserPasswords("*")
     set webName = "/mdx2json" 
     set webProperties("AutheEnabled") = 64 
-    set webProperties("MatchRoles")=":%DB_DCANALYTICS"
+    set webProperties("MatchRoles")=":%DB_ANALYTICS"
     do ##class(Security.Users).AddRoles("UnknownUser", "%ALL")
     set sc = ##class(Security.Applications).Modify(webName, .webProperties)
 

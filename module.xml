@@ -14,32 +14,30 @@
           <Name>dsw</Name>
           <Version>3.*</Version>
         </ModuleReference>
-
+        <ModuleReference>
+          <Name>mdx2json</Name>
+          <Version>3.*</Version>
+        </ModuleReference>
       </Dependencies>
       <Parameter Name="SourceDir" Value="analytics" />
-      <Parameter Name="Namespace" Value="ANALYTICS" />
       <SourcesRoot>src</SourcesRoot>
-      
+
+      <Invoke Class="Community.Utils" Method="setup">
+      <Arg>${cspdir}src/AnalyticsGlobals.gz</Arg>
+      </Invoke>
+      <Resource Name="Community.Member.cls"/>
+      <Resource Name="Community.Utils.cls"/>
       <Resource Name="KPI.DemoPandas.cls"/>
       <Resource Name="KPI.DemoPandasCSV.cls"/>
       <Resource Name="KPI.DemoPandasVar.cls"/>
-      <Resource Name="*.DFI" />
+      <Resource Name="Community.inc"/>
+
+      <FileCopy Name="src/AnalyticsGlobals.gz" Target="${cspdir}src/AnalyticsGlobals.gz"/>
+      <FileCopy Name="src/FakeData.csv" Target="${cspdir}src/FakeData.csv"/>
       <FileCopy Name="dsw/analytics.json" Target="${cspdir}dsw/configs/${SourceDir}.json"/>
       <FileCopy Name="dsw/config.json" Target="${cspdir}dsw/configs/${SourceDir}.json"/>
-      <FileCopy Name="AnalyticsGlobals.gz" Target="${cspdir}/src"/>
-      <FileCopy Name="FakeData.csv" Target="${cspdir}/src"/>
-      <CSPApplication 
-        Url="/demo-pandas-analytics"
-        Path="/src"
-        Recurse="1"
-        Directory="{$cspdir}/demo-pandas-analytics" 
-        MatchRoles=":%DB_${Namespace}"
-        PasswordAuthEnabled="1"
-        UnauthenticatedEnabled="1"
-        ServeFiles="1"
-        CookiePath="/demo-pandas-analytics/"
-        UseCookies="2"
-       />
+      
+      
     </Module>
   </Document>
 </Export>

@@ -1,7 +1,7 @@
 Class Community.Utils [ Abstract ]
 {
 
-ClassMethod setup(globalPath As %String = "", facts = 10000, ViewsLoad = "True") As %Status
+ClassMethod setup(globalPath As %String, facts = 10000, ViewsLoad = "True") As %Status
 {
 	if globalPath = "" {
 		write "Please input path to global GZ file.", !
@@ -17,17 +17,11 @@ ClassMethod setup(globalPath As %String = "", facts = 10000, ViewsLoad = "True")
 		return sc
 	}
 	
-	write "Enabling iKnow",!
-	set sc=..enableIknow()
-	return:$$$ISERR(sc) sc
-
+	
 	write "Building indices", !
 	set sc = ..buildIndices()
 	return:$$$ISERR(sc) sc
 	
-	write "Building cubes", !
-	set sc = ..UpdateCubes(,facts,ViewsLoad)
-	return:$$$ISERR(sc) sc
 	
 	w "Done!", !
 	return $$$OK
@@ -48,13 +42,14 @@ ClassMethod importXMLGlobal(globalPath As %String) As %Status
 {
 	set s=##class(%Stream.FileBinaryGzip).%New() 
 	do s.LinkToFile(globalPath) 
-	do $System.OBJ.LoadStream(s) 
+	do $System.OBJ.LoadStream(s)
+
 	kill s
 }
 
 ClassMethod buildIndices() As %Status
 {
-	set sql="select Name from %Dictionary.CompiledClass where system=0 and NOT(Name %Startswith '%') AND SUPER [ 'Persistent'"
+	set sql="select Name from %Dictionary.CompiledClass where system=0 and NOT(Name %Startswith '%') AND SUPER [ 'Persistent' and name = 'Community.Member'"
 	set rs=##class(%SQL.Statement).%ExecDirect(,sql)
 	while rs.%Next() { 
 		set sc= $classmethod(rs.%GetData(1),"%BuildIndices") 

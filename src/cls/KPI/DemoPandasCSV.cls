@@ -19,19 +19,15 @@ XData KPI [ XMLNamespace = "http://www.intersystems.com/deepsee/kpi" ]
 ClassMethod MembersDF() As %Library.DynamicArray [ Language = python ]
 {
 
-    # First of all, we import the most important library in our script: IRIS.
-    # IRIS library provides syntax for calling ObjectScript classes.
-    # It simplifies Python-ObjectScript integration.
-    # With the help of the library we can call any class and class method, and
-    # it returns whatever data type we like, and ObjectScript understands it.
-
     import iris
-    # Then, of course, import the pandas itself.
-
+    
     import pandas as pd
- 
-    data = pd.read_csv("/opt/analytics/src/FakeData.csv")
- 
+
+    try:
+        data = pd.read_csv("/usr/irissys/csp/src/FakeData.csv")
+    except FileNotFoundError:
+        data = pd.read_csv(r"/opt/analytics/FakeData.csv")
+
     grouped_data = data.groupby(["gender"]).count()
 
     gender_count = grouped_data["id"]
