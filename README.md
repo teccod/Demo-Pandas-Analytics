@@ -2,7 +2,7 @@ The idea is to showcase how to use python analytic instruments inside IRIS and v
 
 ### Instalation via Docker compose
 
-1. Download the package runing ``` git clone https://github.com/teccod/Demo-Pandas-Analytics.git ```
+1. Download the package
 2. From root directory run ``` docker compose up -d ``` and wait till all work is done
 3. After that go to ```http://localhost:53233/dsw/index.html#/ANALYTICS ```
 4. You all set!
