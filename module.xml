@@ -12,7 +12,7 @@
         </ModuleReference>
         <ModuleReference>
           <Name>dsw</Name>
-          <Version>3.*</Version>
+          <Version>4.*</Version>
         </ModuleReference>
         <ModuleReference>
           <Name>mdx2json</Name>
